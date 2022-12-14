@@ -1,26 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reponses index{% endblock %}
+{% block title %}Listes des réponses | Quizilla{% endblock %}
 
 {% block body %}
-    <h1>Reponses index</h1>
+    <h1>Listes des réponses</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Reponses</th>
-                <th>actions</th>
+                <th>Les réponses</th>
             </tr>
         </thead>
         <tbody>
         {% for reponse in reponses %}
             <tr>
-                <td>{{ reponse.id }}</td>
                 <td>{{ reponse.reponses }}</td>
                 <td>
-                    <a href="{{ path('app_reponses_show', {'id': reponse.id}) }}">show</a>
-                    <a href="{{ path('app_reponses_edit', {'id': reponse.id}) }}">edit</a>
+                    <a href="{{ path('app_reponses_show', {'id': reponse.id}) }}">Lire</a>
+                    <a href="{{ path('app_reponses_edit', {'id': reponse.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
