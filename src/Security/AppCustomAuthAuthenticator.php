@@ -46,11 +46,20 @@ class AppCustomAuthAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        $user = $token->getUser();
+        if (in_array("ROLE_ADMIN", $user->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('app_quiz_index'));
+        }
+        elseif (in_array("ROLE_PRO", $user->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('app_questions_index'));
+        }
+        else{
+            return new RedirectResponse($this->urlGenerator->generate('app_affiche_quiz'));
+        }
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_quiz_index'));
+        // return new RedirectResponse($this->urlGenerator->generate('app_quiz_index'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
-
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
