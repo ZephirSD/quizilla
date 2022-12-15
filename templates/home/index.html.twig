@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>Quizilla</h1>
+        <a href="{{ path('app_login') }}">Se connecter</a>
+        <a href="{{ path('app_register') }}">S'enregister</a>
+    </section>
+{% endblock %}

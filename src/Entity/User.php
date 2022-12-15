@@ -31,10 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\ManyToOne(inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Role $id_role = null;
-
     #[ORM\OneToMany(mappedBy: 'id_professionel', targetEntity: Quiz::class, orphanRemoval: true)]
     private Collection $quizzes;
 
@@ -114,18 +110,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function getIdRole(): ?Role
-    {
-        return $this->id_role;
-    }
-
-    public function setIdRole(?Role $id_role): self
-    {
-        $this->id_role = $id_role;
-
-        return $this;
     }
 
     /**
