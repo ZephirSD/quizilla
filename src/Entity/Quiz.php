@@ -50,7 +50,7 @@ class Quiz
 
     public function __toString()
     {
-        return $this->id;
+        return $this->id_professionel;
     }
 
     /**

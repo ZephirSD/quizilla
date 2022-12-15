@@ -59,6 +59,11 @@ class Reponses
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->id_question;
+    }
+
     /**
      * @return Collection<int, ResponsesClient>
      */

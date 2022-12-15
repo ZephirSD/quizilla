@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Name</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
         {% for quiz in quizzes %}
             <tr>
                 <td>{{ quiz.id }}</td>
+                <td>{{ quiz }}</td>
                 <td>
                     <a href="{{ path('app_quiz_show', {'id': quiz.id}) }}">show</a>
                     <a href="{{ path('app_quiz_edit', {'id': quiz.id}) }}">edit</a>

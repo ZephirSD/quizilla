@@ -66,7 +66,6 @@ class Questions
             $this->reponses->add($reponse);
             $reponse->setIdQuestion($this);
         }
-
         return $this;
     }
 

@@ -15,6 +15,7 @@
         {% for reponse in reponses %}
             <tr>
                 <td>{{ reponse.reponses }}</td>
+                <td>{{ reponse }}</td>
                 <td>
                     <a href="{{ path('app_reponses_show', {'id': reponse.id}) }}">Lire</a>
                     <a href="{{ path('app_reponses_edit', {'id': reponse.id}) }}">Modifier</a>
