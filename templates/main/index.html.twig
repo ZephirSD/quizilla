@@ -1,7 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}
+    Quiz de {{quiz}}
+{% endblock %}
 
 {% block body %}
-    {{quiz}}
+    <section>
+        <h3><span>Vous êtes sur le quiz de {{quiz}}<span></h3>
+        {% for qz in quiz.questions %}
+            <div>{{qz.question}}</div>
+            {% for reponse in qz.reponses %}
+                <label for={{reponse.id}}>{{reponse.reponses}}</label>
+                <input type="radio" name={{qz.id}}
+            {% endfor %}
+        {% endfor %}
+    </section>
 {% endblock %}
