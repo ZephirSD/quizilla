@@ -7,12 +7,15 @@
 {% block body %}
     <section>
         <h3><span>Vous êtes sur le quiz de {{quiz}}<span></h3>
-        {% for qz in quiz.questions %}
-            <div>{{qz.question}}</div>
-            {% for reponse in qz.reponses %}
-                <label for={{reponse.id}}>{{reponse.reponses}}</label>
-                <input type="radio" name={{qz.id}}
+        <form method="POST" action="{{path('app_client_reponse')}}">
+            {% for qz in quiz.questions %}
+                <div>{{qz.question}}</div>
+                {% for reponse in qz.reponses %}
+                    <label for={{reponse.id}}>{{reponse.reponses}}</label>
+                    <input type="radio" name="{{qz.id}}" value="{{reponse.id}}">
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+            <button type="submit">Envoyer</button>
+        </form>
     </section>
 {% endblock %}
