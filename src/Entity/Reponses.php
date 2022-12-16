@@ -22,7 +22,7 @@ class Reponses
     #[ORM\JoinColumn(nullable: false)]
     private ?Questions $id_question = null;
 
-    #[ORM\OneToMany(mappedBy: 'id_reponse', targetEntity: ResponsesClient::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'id_reponse', targetEntity: ResponsesClient::class, orphanRemoval: false)]
     private Collection $responsesClients;
 
     public function __construct()
@@ -33,6 +33,12 @@ class Reponses
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getIdClient(?int $intClient): self
+    {
+        $this->id = $intClient;
+        return $this;
     }
 
     public function getReponses(): ?string
@@ -61,6 +67,7 @@ class Reponses
 
     public function __toString()
     {
+        if (is_null($this->id_question)) return 'NULL';
         return $this->id_question;
     }
 
