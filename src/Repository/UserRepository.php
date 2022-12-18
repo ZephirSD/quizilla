@@ -19,6 +19,16 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
+    public function findAllUser(?string $roles)
+    {
+        if ($roles) {
+            $query = $this->createQueryBuilder('u')
+                ->where('u.roles LIKE :val')
+                ->setParameter('val', $roles)
+                ->orderBy('u.nom', 'ASC');
+            return $query->getQuery()->getResult();
+        }
+    }
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
