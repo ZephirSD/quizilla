@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Quiz;
 use App\Form\QuizType;
 use App\Repository\QuizRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,21 +23,17 @@ class QuizController extends AbstractController
     }
 
     #[Route('/new', name: 'app_quiz_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, QuizRepository $quizRepository): Response
+    public function new(Request $request, QuizRepository $quizRepository, UserRepository $userRepository): Response
     {
         $quiz = new Quiz();
-        $form = $this->createForm(QuizType::class, $quiz);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $quizRepository->save($quiz, true);
-
+        $reponseQuiz = $request->request->all();
+        foreach($reponseQuiz as $rpQuiz){
+            $quizRepository->pushPro(intval($rpQuiz));
             return $this->redirectToRoute('app_quiz_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('quiz/new.html.twig', [
             'quiz' => $quiz,
-            'form' => $form,
+            'quizRoles' => $userRepository->findAllUser('["ROLE_PRO"]')
         ]);
     }
 
