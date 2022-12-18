@@ -16,6 +16,18 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class QuizRepository extends ServiceEntityRepository
 {
+
+    public function pushPro(?int $id_professionnel)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $queryBuilder = $conn->createQueryBuilder();
+        if ($id_professionnel) {
+            $queryBuilder->insert('quiz')
+                ->setValue('id_professionel_id', '?')
+                ->setParameter(0, $id_professionnel);
+            return $queryBuilder->execute();
+        }
+    }
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Quiz::class);
