@@ -1,4 +1,10 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
+<form method="POST" action"{{path('app_quiz_new')}}">
+    <label for="id_professionel">Id professionel</label>
+    <select name="id_professionel" id="id_professionel">
+        {% for rl in quizRoles %}
+            <option value={{ rl.id }}>{{rl.nom}}</option>
+        {% endfor %}
+    </select>
     <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+</form>
+
