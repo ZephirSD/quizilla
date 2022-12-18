@@ -61,28 +61,6 @@ class Quiz
         return $this->responsesClients;
     }
 
-    public function addResponsesClient(ResponsesClient $responsesClient): self
-    {
-        if (!$this->responsesClients->contains($responsesClient)) {
-            $this->responsesClients->add($responsesClient);
-            $responsesClient->setIdQuiz($this);
-        }
-
-        return $this;
-    }
-
-    public function removeResponsesClient(ResponsesClient $responsesClient): self
-    {
-        if ($this->responsesClients->removeElement($responsesClient)) {
-            // set the owning side to null (unless already changed)
-            if ($responsesClient->getIdQuiz() === $this) {
-                $responsesClient->setIdQuiz(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Questions>
      */
